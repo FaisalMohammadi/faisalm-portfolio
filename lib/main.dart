@@ -1,64 +1,59 @@
+import 'package:faisalm_portfolio/common/themes/app_theme.dart';
+import 'package:faisalm_portfolio/provider/drawer_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'common/helper/print.dart';
+import 'main_app.dart';
+import 'provider/app_provider.dart';
+import 'provider/scroll_provider.dart';
+import 'ui/main/main_page.dart';
 
 void main() {
-  runApp(MyApp());
-}
+  try {
+    /* WidgetsFlutterBinding.ensureInitialized();
+    HttpOverrides.global = MyHttpOverrides(); // for handshake certification error
+    // gets the AuthProvider class instance
+    //AuthProvider authProvider = locator.get<AuthProvider>();
+    await initDependencies();
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+    /// initializes the shared preferences
+    await Preferences.initialize();
+
+    /// restores all the authentication state from sharedpreferences
+    await locator.get<AuthService>().tryRestoreAuthStateFromPreferencesAsync();
+
+    /// check and Authenticate with Biometrics
+    await locator.get<BiometricLoginService>().checkAndAuthenticateWithBiometrics();
+    await locator.get<AuthService>().tryAutoLogin(); */
+    runApp(
+      MyApp(),
     );
+  } catch (e) {
+    printError('Main.main() => Unhandled Exception', e);
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
+class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  MyAppState createState() => MyAppState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
+class MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => AppProvider()),
+        ChangeNotifierProvider(create: (_) => DrawerProvider()),
+        ChangeNotifierProvider(create: (_) => ScrollProvider()),
+      ],
+      child: Consumer<AppProvider>(
+        builder: (context, value, _) => MainApp(
+          provider: value,
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
       ),
     );
   }
