@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 /// wraps any button with the customized tooltip
-extension TooltipEx on ButtonStyleButton {
+extension TooltipExt on ButtonStyleButton {
   /// shows a custom tooltip
   Tooltip showTooltip(String text) {
     return Tooltip(
