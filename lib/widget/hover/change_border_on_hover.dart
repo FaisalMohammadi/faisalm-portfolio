@@ -10,8 +10,6 @@ class ChangeBorderOnHover extends StatefulWidget {
 }
 
 class _ChangeBorderOnHoverState extends State<ChangeBorderOnHover> {
-  final nonHoverTransform = Matrix4.identity();
-  final hoverTransform = Matrix4.identity()..translate(0, -5, 0);
 
   Decoration? decoration;
   Color? containerBorderColor;
@@ -29,7 +27,6 @@ class _ChangeBorderOnHoverState extends State<ChangeBorderOnHover> {
           decoration: decoration,
           duration: const Duration(milliseconds: 200),
           child: widget.child,
-          //transform: _hovering ? hoverTransform : nonHoverTransform,
         ),
       ),
     );
