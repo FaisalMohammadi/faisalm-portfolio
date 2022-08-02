@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 class ChangeBorderOnHover extends StatefulWidget {
   final Widget? child;
@@ -46,6 +47,12 @@ class _ChangeBorderOnHoverState extends State<ChangeBorderOnHover> {
       containerBorderColor = Colors.red;
       decoration = BoxDecoration(
         color: Colors.blue,
+        gradient: LinearGradient(
+          colors: [
+            HexColor("D4145A"),
+            HexColor("FBB03B"),
+          ],
+        ),
       );
       /* decoration = BoxDecoration(
         //color: Colors.blue,
