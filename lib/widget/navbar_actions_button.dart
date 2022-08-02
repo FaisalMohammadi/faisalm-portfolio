@@ -1,3 +1,4 @@
+import 'package:faisalm_portfolio/common/extension/hover_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -32,7 +33,7 @@ class NavBarActionButton extends StatelessWidget {
         child: MaterialButton(
           splashColor: Colors.white54,
           highlightColor: Colors.white54,
-          hoverColor: AppTheme.c!.primary,
+          //hoverColor: AppTheme.c!.primary,
           onPressed: () {
             scrollProvider.scroll(index);
           },
@@ -43,7 +44,7 @@ class NavBarActionButton extends StatelessWidget {
               style: AppText.l1,
             ),
           ),
-        ),
+        ).changeBorderOnHover.moveUpOnHover,
       ),
     );
   }
