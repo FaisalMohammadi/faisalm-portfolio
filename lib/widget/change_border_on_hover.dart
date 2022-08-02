@@ -18,33 +18,42 @@ class _ChangeBorderOnHoverState extends State<ChangeBorderOnHover> {
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
-      //onEnter: (e) => _mouseEnter(),
+      //onEnter: (e) => _changeBorderColor(),
       onExit: (e) => _mouseExit(),
       onHover: (e) => _changeBorderColor(),
-      child: AnimatedContainer(
-        decoration: decoration,
-        duration: const Duration(milliseconds: 200),
-        child: widget.child,
-        //transform: _hovering ? hoverTransform : nonHoverTransform,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(50),
+        child: AnimatedContainer(
+          //color: containerBorderColor,
+          decoration: decoration,
+          duration: const Duration(milliseconds: 200),
+          child: widget.child,
+          //transform: _hovering ? hoverTransform : nonHoverTransform,
+        ),
       ),
     );
   }
 
   void _mouseExit() {
     setState(() {
+      containerBorderColor = null;
       decoration = null;
     });
   }
 
   void _changeBorderColor() {
     setState(() {
-      //containerColor = Colors.red;
+      containerBorderColor = Colors.red;
       decoration = BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(
-            color: Colors.red,
-            width: 1.5,
-          ));
+        color: Colors.blue,
+      );
+      /* decoration = BoxDecoration(
+        //color: Colors.blue,
+        border: Border.all(
+          color: Colors.red,
+          width: 1.5,
+        ),
+      ); */
     });
   }
 }
