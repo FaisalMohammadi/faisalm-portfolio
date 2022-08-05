@@ -64,17 +64,15 @@ class NavbarDesktop extends StatelessWidget {
             ),
           ),
           Space.x!,
-          Flexible(
-            child: Switch(
-              inactiveTrackColor: Colors.grey,
-              value: appProvider.isDark,
-              onChanged: (value) {
-                appProvider.setTheme(
-                  !value ? ThemeMode.light : ThemeMode.dark,
-                );
-              },
-              activeColor: AppTheme.c!.primary!,
-            ),
+          Switch(
+            inactiveTrackColor: Colors.grey,
+            value: appProvider.isDark,
+            onChanged: (value) {
+              appProvider.setTheme(
+                !value ? ThemeMode.light : ThemeMode.dark,
+              );
+            },
+            activeColor: AppTheme.c!.primary!,
           ),
           Space.x!,
         ],
