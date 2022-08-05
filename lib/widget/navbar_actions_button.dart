@@ -44,7 +44,7 @@ class NavBarActionButton extends StatelessWidget {
               style: AppText.l1,
             ),
           ),
-        ).changeBackgroundColorOnHover.moveUpOnHover,
+        ).changeBorderOnHover.moveUpOnHover,
       ),
     );
   }
