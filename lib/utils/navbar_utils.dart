@@ -5,8 +5,7 @@ class NavBarUtils {
   static const List<String> names = [
     'HOME',
     'ABOUT',
-    'SERVICES',
-    'PROJECTS',
+    'MY SKILLS',
     'CONTACT',
   ];
 
