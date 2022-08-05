@@ -1,4 +1,3 @@
-import 'package:figma_squircle/figma_squircle.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
@@ -11,6 +10,7 @@ class ChangeBorderOnHover extends StatefulWidget {
 }
 
 class _ChangeBorderOnHoverState extends State<ChangeBorderOnHover> {
+
   Decoration? decoration;
   Color? containerBorderColor;
 
@@ -20,9 +20,8 @@ class _ChangeBorderOnHoverState extends State<ChangeBorderOnHover> {
       //onEnter: (e) => _changeBorderColor(),
       onExit: (e) => _mouseExit(),
       onHover: (e) => _changeBorderColor(),
-      child: ClipPath(
-        clipper: CustomClipPath(),
-        //borderRadius: BorderRadius.circular(50),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(50),
         child: AnimatedContainer(
           //color: containerBorderColor,
           decoration: decoration,
@@ -45,7 +44,6 @@ class _ChangeBorderOnHoverState extends State<ChangeBorderOnHover> {
       containerBorderColor = Colors.red;
       decoration = BoxDecoration(
         color: Colors.blue,
-        //borderRadius: BorderRadius.circular(20),
         gradient: LinearGradient(
           colors: [
             HexColor("D4145A"),
@@ -62,24 +60,4 @@ class _ChangeBorderOnHoverState extends State<ChangeBorderOnHover> {
       ); */
     });
   }
-}
-
-class CustomClipPath extends CustomClipper<Path> {
-  var radius = 5.0;
-
-  @override
-  Path getClip(Size size) {
-    
-    final double startMargin = size.width / 14;
-    Path path = Path();
-    path.moveTo(size.width, 0.0);
-    path.lineTo(size.width / 1.2, size.height);
-    path.lineTo(0.0, size.height);
-    path.lineTo(size.width / 5, 0);
-    path.close();
-    return path;
-  }
-
-  @override
-  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
 }
