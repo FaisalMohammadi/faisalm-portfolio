@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
+import 'package:injectable/injectable.dart';
 
 import '../common/configs/app_dimensions.dart';
 
+@singleton
 class ScrollProvider extends ChangeNotifier {
   final scrollController = ScrollController();
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:injectable/injectable.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -7,7 +8,7 @@ final themeMap = {
   "light": ThemeMode.light,
 };
 
-//@singleton
+@singleton
 class AppProvider extends ChangeNotifier {
   static AppProvider state(BuildContext context, [bool listen = false]) =>
       Provider.of<AppProvider>(context, listen: listen);
