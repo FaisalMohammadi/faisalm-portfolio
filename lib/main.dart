@@ -3,17 +3,20 @@ import 'package:faisalm_portfolio/provider/drawer_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'common/di/di.dart';
 import 'common/helper/print.dart';
+import 'common/preferences/preferences.dart';
 import 'main_app.dart';
 import 'provider/app_provider.dart';
 import 'provider/scroll_provider.dart';
 import 'ui/main/main_page.dart';
 
-void main() {
+void main() async {
   try {
-    /* WidgetsFlutterBinding.ensureInitialized();
-    HttpOverrides.global = MyHttpOverrides(); // for handshake certification error
-    // gets the AuthProvider class instance
+    WidgetsFlutterBinding.ensureInitialized();
+    //HttpOverrides.global = MyHttpOverrides(); // for handshake certification error
+
+    /// gets the AuthProvider class instance
     //AuthProvider authProvider = locator.get<AuthProvider>();
     await initDependencies();
 
@@ -21,11 +24,12 @@ void main() {
     await Preferences.initialize();
 
     /// restores all the authentication state from sharedpreferences
-    await locator.get<AuthService>().tryRestoreAuthStateFromPreferencesAsync();
+    /* await locator.get<AuthService>().tryRestoreAuthStateFromPreferencesAsync();
 
     /// check and Authenticate with Biometrics
     await locator.get<BiometricLoginService>().checkAndAuthenticateWithBiometrics();
     await locator.get<AuthService>().tryAutoLogin(); */
+    
     runApp(
       MyApp(),
     );
