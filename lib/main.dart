@@ -29,7 +29,7 @@ void main() async {
     /// check and Authenticate with Biometrics
     await locator.get<BiometricLoginService>().checkAndAuthenticateWithBiometrics();
     await locator.get<AuthService>().tryAutoLogin(); */
-    
+
     runApp(
       MyApp(),
     );
@@ -50,9 +50,18 @@ class MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => AppProvider()),
+        ChangeNotifierProvider<AppProvider>.value(
+          value: locator.get<AppProvider>(),
+        ),
+        ChangeNotifierProvider<DrawerProvider>.value(
+          value: locator.get<DrawerProvider>(),
+        ),
+        ChangeNotifierProvider<ScrollProvider>.value(
+          value: locator.get<ScrollProvider>(),
+        ),
+        /* ChangeNotifierProvider(create: (_) => AppProvider()),
         ChangeNotifierProvider(create: (_) => DrawerProvider()),
-        ChangeNotifierProvider(create: (_) => ScrollProvider()),
+        ChangeNotifierProvider(create: (_) => ScrollProvider()), */
       ],
       child: Consumer<AppProvider>(
         builder: (context, value, _) => MainApp(
